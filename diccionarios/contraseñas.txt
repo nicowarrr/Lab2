@@ -1,0 +1,10 @@
+root
+letmein
+password
+12345
+5555
+666
+12345678
+20012002
+lrow2
+leork
